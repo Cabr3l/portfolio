@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidias TIOTSOP | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Code+Pro:wght@400;500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-background"></div>
+    
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <span class="logo-symbol">∑</span>
+                <span class="logo-text">Portfolio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="projects.html">Projets</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    École Polytechnique — Mathématiques Appliquées
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Bidias TIOTSOP</span>
+                    <span class="title-line highlight">Mathématiques Appliquées</span>
+                </h1>
+                <p class="hero-description">
+                    Étudiant en 3<sup>e</sup> année au département de mathématiques appliquées, 
+                    passionné par la finance quantitative, la modélisation stochastique 
+                    et le deep learning. À la recherche d'un stage de recherche en finance quantitative.
+                </p>
+                <div class="hero-cta">
+                    <a href="projects.html" class="btn btn-primary">
+                        <span>Voir mes projets</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">Me contacter</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="math-decoration">
+                    <div class="formula formula-1">∫<sub>0</sub><sup>∞</sup> e<sup>-x²</sup> dx = √π/2</div>
+                    <div class="formula formula-2">∇ × E = -∂B/∂t</div>
+                    <div class="formula formula-3">P(A|B) = P(B|A)P(A)/P(B)</div>
+                </div>
+                <div class="geometric-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <div class="section-header">
+                <span class="section-tag">Aperçu</span>
+                <h2>Projets récents</h2>
+            </div>
+            <div class="projects-preview">
+                <article class="project-card">
+                    <div class="project-number">01</div>
+                    <div class="project-content">
+                        <h3>Mean Field Games — Mutual Cross-Holding</h3>
+                        <p>Modélisation de situations de détention croisée via les jeux à champ moyen en temps discret.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Mean Field Games</span>
+                            <span class="tag">Finance</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </article>
+                <article class="project-card">
+                    <div class="project-number">02</div>
+                    <div class="project-content">
+                        <h3>Forex Trading Model</h3>
+                        <p>Modèles de trading algorithmique avec Random Forest et XGBoost — Sharpe ratio de 2.96.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Trading</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </article>
+                <article class="project-card">
+                    <div class="project-number">03</div>
+                    <div class="project-content">
+                        <h3>Portfolio Risk Modeling</h3>
+                        <p>Estimation de la VaR avec importance sampling, last particle et splitting methods.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Risk Management</span>
+                            <span class="tag">Monte Carlo</span>
+                        </div>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </article>
+            </div>
+            <div class="section-footer">
+                <a href="projects.html" class="link-more">
+                    Voir tous les projets
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="skills-section">
+            <div class="section-header">
+                <span class="section-tag">Compétences</span>
+                <h2>Domaines d'expertise</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Finance Quantitative</h3>
+                    <p>Modélisation stochastique, pricing, gestion des risques</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
+                            <rect x="9" y="9" width="6" height="6"/>
+                        </svg>
+                    </div>
+                    <h3>Deep Learning</h3>
+                    <p>PyTorch, TensorFlow, LSTM, Transformers</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>Statistiques</h3>
+                    <p>Séries temporelles, apprentissage statistique</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <h3>Programmation</h3>
+                    <p>Python, Java, NumPy, Pandas, Scikit-Learn</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-symbol">∑</span>
+                <p><strong>Bidias TIOTSOP</strong><br>Étudiant en mathématiques appliquées<br>École Polytechnique</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="projects.html">Projets</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens</h4>
+                    <ul>
+                        <li><a href="https://github.com/Cabr3l" target="_blank">GitHub</a></li>
+                        <li><a href="https://linkedin.com/in/Bidias-TIOTSOP" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 — Portfolio. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
