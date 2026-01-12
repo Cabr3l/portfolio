@@ -19,7 +19,7 @@ function initThemeToggle() {
     if (!themeToggle) return;
     
     // Load saved theme or use dark mode by default
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const  savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
     }
