@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +19,28 @@
                 <span class="logo-text">Portfolio</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Accueil</a></li>
-                <li><a href="projects.html">Projets</a></li>
-                <li><a href="about.html">À propos</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="cv.html">Resume</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -37,25 +54,25 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="badge-dot"></span>
-                    École Polytechnique — Mathématiques Appliquées
+                    École Polytechnique — Applied Mathematics
                 </div>
                 <h1 class="hero-title">
                     <span class="title-line">Bidias TIOTSOP</span>
-                    <span class="title-line highlight">Mathématiques Appliquées</span>
+                    <span class="title-line highlight">Applied Mathematics</span>
                 </h1>
                 <p class="hero-description">
-                    Étudiant en 3<sup>e</sup> année au département de mathématiques appliquées, 
-                    passionné par la finance quantitative, la modélisation stochastique 
-                    et le deep learning. À la recherche d'un stage de recherche en finance quantitative.
+                    3<sup>rd</sup> year student in the Applied Mathematics department, 
+                    passionate about quantitative finance, stochastic modeling 
+                    and deep learning.
                 </p>
                 <div class="hero-cta">
                     <a href="projects.html" class="btn btn-primary">
-                        <span>Voir mes projets</span>
+                        <span>View my projects</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="contact.html" class="btn btn-secondary">Me contacter</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact me</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -74,15 +91,15 @@
 
         <section class="featured-section">
             <div class="section-header">
-                <span class="section-tag">Aperçu</span>
-                <h2>Projets récents</h2>
+                <span class="section-tag">Overview</span>
+                <h2>Recent Projects</h2>
             </div>
             <div class="projects-preview">
                 <article class="project-card">
                     <div class="project-number">01</div>
                     <div class="project-content">
                         <h3>Mean Field Games — Mutual Cross-Holding</h3>
-                        <p>Modélisation de situations de détention croisée via les jeux à champ moyen en temps discret.</p>
+                        <p>Modeling cross-holding situations using mean field games in discrete time.</p>
                         <div class="project-tags">
                             <span class="tag">Python</span>
                             <span class="tag">Mean Field Games</span>
@@ -95,7 +112,7 @@
                     <div class="project-number">02</div>
                     <div class="project-content">
                         <h3>Forex Trading Model</h3>
-                        <p>Modèles de trading algorithmique avec Random Forest et XGBoost — Sharpe ratio de 2.96.</p>
+                        <p>Algorithmic trading models with Random Forest and XGBoost — Sharpe ratio of 2.96.</p>
                         <div class="project-tags">
                             <span class="tag">Python</span>
                             <span class="tag">XGBoost</span>
@@ -108,7 +125,7 @@
                     <div class="project-number">03</div>
                     <div class="project-content">
                         <h3>Portfolio Risk Modeling</h3>
-                        <p>Estimation de la VaR avec importance sampling, last particle et splitting methods.</p>
+                        <p>VaR estimation using importance sampling, last particle and splitting methods.</p>
                         <div class="project-tags">
                             <span class="tag">Python</span>
                             <span class="tag">Risk Management</span>
@@ -120,7 +137,7 @@
             </div>
             <div class="section-footer">
                 <a href="projects.html" class="link-more">
-                    Voir tous les projets
+                    View all projects
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -130,8 +147,8 @@
 
         <section class="skills-section">
             <div class="section-header">
-                <span class="section-tag">Compétences</span>
-                <h2>Domaines d'expertise</h2>
+                <span class="section-tag">Skills</span>
+                <h2>Areas of Expertise</h2>
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
@@ -140,8 +157,8 @@
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                         </svg>
                     </div>
-                    <h3>Finance Quantitative</h3>
-                    <p>Modélisation stochastique, pricing, gestion des risques</p>
+                    <h3>Quantitative Finance</h3>
+                    <p>Stochastic modeling, pricing, risk management</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">
@@ -161,8 +178,8 @@
                             <line x1="12" y1="22.08" x2="12" y2="12"/>
                         </svg>
                     </div>
-                    <h3>Statistiques</h3>
-                    <p>Séries temporelles, apprentissage statistique</p>
+                    <h3>Statistics</h3>
+                    <p>Time series, statistical learning</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">
@@ -171,7 +188,7 @@
                             <polyline points="8 6 2 12 8 18"/>
                         </svg>
                     </div>
-                    <h3>Programmation</h3>
+                    <h3>Programming</h3>
                     <p>Python, Java, NumPy, Pandas, Scikit-Learn</p>
                 </div>
             </div>
@@ -182,20 +199,21 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <span class="logo-symbol">∑</span>
-                <p><strong>Bidias TIOTSOP</strong><br>Étudiant en mathématiques appliquées<br>École Polytechnique</p>
+                <p><strong>Bidias TIOTSOP</strong><br>Applied Mathematics Student<br>École Polytechnique</p>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="projects.html">Projets</a></li>
-                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="cv.html">Resume</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Liens</h4>
+                    <h4>Links</h4>
                     <ul>
                         <li><a href="https://github.com/Cabr3l" target="_blank">GitHub</a></li>
                         <li><a href="https://linkedin.com/in/Bidias-TIOTSOP" target="_blank">LinkedIn</a></li>
@@ -204,11 +222,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 — Portfolio. Tous droits réservés.</p>
+            <p>&copy; 2026 — Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="main.js"></script>
 </body>
 </html>
-

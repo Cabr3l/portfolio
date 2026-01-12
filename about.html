@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À propos | Bidias TIOTSOP</title>
+    <title>About | Bidias TIOTSOP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,11 +19,28 @@
                 <span class="logo-text">Portfolio</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="projects.html">Projets</a></li>
-                <li><a href="about.html" class="active">À propos</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="cv.html">Resume</a></li>
+                <li><a href="about.html" class="active">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -35,30 +52,30 @@
     <main>
         <section class="page-header">
             <div class="page-header-content">
-                <span class="section-tag">Qui suis-je ?</span>
-                <h1>À propos</h1>
-                <p>Découvrez mon parcours et mes motivations.</p>
+                <span class="section-tag">Who am I?</span>
+                <h1>About</h1>
+                <p>Discover my background and motivations.</p>
             </div>
         </section>
 
         <section class="about-content">
             <div class="about-main">
                 <div class="about-text">
-                    <h2>Mon parcours</h2>
+                    <h2>My Journey</h2>
                     <p>
-                        Actuellement en 3<sup>e</sup> année au département de <strong>mathématiques appliquées</strong> 
-                        de l'École Polytechnique, je me passionne pour la <strong>finance quantitative</strong>, 
-                        la modélisation stochastique, l'analyse de séries temporelles et le deep learning.
+                        Currently in my 3<sup>rd</sup> year in the <strong>Applied Mathematics</strong> department 
+                        at École Polytechnique, I am passionate about <strong>quantitative finance</strong>, 
+                        stochastic modeling, time series analysis and deep learning.
                     </p>
                     <p>
-                        Mon parcours m'a permis d'explorer divers domaines : de l'apprentissage statistique 
-                        à la gestion des risques, en passant par la recherche opérationnelle. J'ai eu l'opportunité 
-                        de travailler comme <strong>Quant Risk Analyst</strong> chez Abeille Assurances, où j'ai 
-                        développé des modèles de pricing et de risque de crédit.
+                        My journey has allowed me to explore various fields: from statistical learning 
+                        to risk management, including operations research. I had the opportunity 
+                        to work as a <strong>Quant Risk Analyst</strong> at Abeille Assurances, where I 
+                        developed pricing and credit risk models.
                     </p>
                     <p>
-                        Je recherche actuellement un <strong>stage de recherche de 4-6 mois</strong> en finance 
-                        quantitative et développement de modèles pour approfondir mes compétences dans ce domaine.
+                        I am always looking for new challenges and opportunities 
+                        to deepen my skills in this exciting field.
                     </p>
                 </div>
 
@@ -70,16 +87,16 @@
 
         <section class="timeline-section">
             <div class="section-header">
-                <span class="section-tag">Parcours</span>
-                <h2>Formation</h2>
+                <span class="section-tag">Background</span>
+                <h2>Education</h2>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Sept 2023 - Présent</div>
+                        <div class="timeline-date">Sept 2023 - Present</div>
                         <h3>École Polytechnique</h3>
-                        <p>Cycle ingénieur — Département de mathématiques appliquées</p>
+                        <p>Engineering Cycle — Applied Mathematics Department</p>
                         <ul class="timeline-details">
                             <li>France's leading school of engineering</li>
                             <li>Stochastics, Statistics, Machine Learning, Optimization, Numerical Analysis, Algorithms and Data Structures</li>
@@ -89,35 +106,23 @@
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Juin - Août 2025</div>
-                        <h3>Stage — Abeille Assurances</h3>
-                        <p>Quant Risk Analyst à Bois-Colombes, France</p>
-                        <ul class="timeline-details">
-                            <li>Modèle Hull-White pour l'inflation (+100% précision)</li>
-                            <li>Modèle Longstaff-Mithal-Neis pour le risque de crédit</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Sept 2020 - Juin 2023</div>
+                        <div class="timeline-date">Sept 2020 - June 2023</div>
                         <h3>National Advanced School of Engineering (ENSP)</h3>
-                        <p>Classes préparatoires — Yaoundé, Cameroun</p>
+                        <p>Preparatory Classes — Yaoundé, Cameroon</p>
                         <ul class="timeline-details">
-                            <li>Admis au concours d'entrée à l'École Polytechnique parmi 500+ candidats</li>
-                            <li>Analyse de la réponse transitoire d'un circuit RLC via méthodes de Runge-Kutta</li>
+                            <li>Passed the competitive entrance exam to École Polytechnique among 500+ candidates</li>
+                            <li>Analyzed the transient response of an RLC circuit using Runge-Kutta methods — <a href="https://github.com/Cabr3l" target="_blank" style="color: var(--accent-light);">View on GitHub</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">Sept 2022 - Juin 2023</div>
-                        <h3>Université de Yaoundé I</h3>
-                        <p>Licence en Mathématiques</p>
+                        <div class="timeline-date">Sept 2022 - June 2023</div>
+                        <h3>University of Yaoundé I</h3>
+                        <p>Bachelor's in Mathematics</p>
                         <ul class="timeline-details">
-                            <li>Top 10% de la promotion (100+ étudiants)</li>
+                            <li>Top 10% of the class (100+ students)</li>
                             <li>Group Classification Theory, Probability, Measure Theory, Numerical Analysis</li>
                         </ul>
                     </div>
@@ -127,17 +132,17 @@
 
         <section class="skills-detail-section">
             <div class="section-header">
-                <span class="section-tag">Technique</span>
-                <h2>Compétences</h2>
+                <span class="section-tag">Technical</span>
+                <h2>Skills</h2>
             </div>
             <div class="skills-categories">
                 <div class="skill-category">
-                    <h3>Langages de programmation</h3>
+                    <h3>Programming Languages</h3>
                     <div class="skill-bars">
                         <div class="skill-bar-item">
                             <div class="skill-bar-header">
                                 <span>Python (NumPy, Pandas, Scikit-Learn, PyTorch, TensorFlow)</span>
-                                <span>Avancé</span>
+                                <span>Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="width: 95%"></div>
@@ -146,7 +151,7 @@
                         <div class="skill-bar-item">
                             <div class="skill-bar-header">
                                 <span>Java (Data Structures, OOP)</span>
-                                <span>Intermédiaire</span>
+                                <span>Intermediate</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="width: 70%"></div>
@@ -155,7 +160,7 @@
                         <div class="skill-bar-item">
                             <div class="skill-bar-header">
                                 <span>Microsoft Excel</span>
-                                <span>Avancé</span>
+                                <span>Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="width: 85%"></div>
@@ -164,7 +169,7 @@
                         <div class="skill-bar-item">
                             <div class="skill-bar-header">
                                 <span>Financial Modeling & Risk Management</span>
-                                <span>Avancé</span>
+                                <span>Advanced</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="width: 85%"></div>
@@ -173,36 +178,20 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Outils & Technologies</h3>
+                    <h3>Tools & Technologies</h3>
                     <div class="tools-grid">
-                        <div class="tool-item">
-                            <span class="tool-name">NumPy</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">Pandas</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">Scikit-learn</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">PyTorch</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">TensorFlow</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">XGBoost</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">Git</span>
-                        </div>
-                        <div class="tool-item">
-                            <span class="tool-name">Excel</span>
-                        </div>
+                        <div class="tool-item"><span class="tool-name">NumPy</span></div>
+                        <div class="tool-item"><span class="tool-name">Pandas</span></div>
+                        <div class="tool-item"><span class="tool-name">Scikit-learn</span></div>
+                        <div class="tool-item"><span class="tool-name">PyTorch</span></div>
+                        <div class="tool-item"><span class="tool-name">TensorFlow</span></div>
+                        <div class="tool-item"><span class="tool-name">XGBoost</span></div>
+                        <div class="tool-item"><span class="tool-name">Git</span></div>
+                        <div class="tool-item"><span class="tool-name">Excel</span></div>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Mathématiques</h3>
+                    <h3>Mathematics</h3>
                     <div class="math-skills">
                         <div class="math-skill-item">
                             <span class="math-icon">∫</span>
@@ -235,28 +224,28 @@
 
         <section class="interests-section">
             <div class="section-header">
-                <span class="section-tag">Langues & Engagement</span>
-                <h2>Langues & Bénévolat</h2>
+                <span class="section-tag">Languages & Engagement</span>
+                <h2>Languages & Volunteering</h2>
             </div>
             <div class="interests-grid">
                 <div class="interest-card">
                     <span class="interest-icon">🇫🇷</span>
-                    <h3>Français</h3>
-                    <p>Langue maternelle</p>
+                    <h3>French</h3>
+                    <p>Native</p>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🇬🇧</span>
-                    <h3>Anglais</h3>
+                    <h3>English</h3>
                     <p>C1 — TOEFL iBT 101/120</p>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🇪🇸</span>
-                    <h3>Espagnol</h3>
-                    <p>A2 — Niveau débutant</p>
+                    <h3>Spanish</h3>
+                    <p>A2 — Beginner</p>
                 </div>
                 <div class="interest-card">
                     <span class="interest-icon">🤝</span>
-                    <h3>Mentorat</h3>
+                    <h3>Mentoring</h3>
                     <p>La Cordée de la Réussite — Pôle Égalité des Chances</p>
                 </div>
             </div>
@@ -267,20 +256,21 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <span class="logo-symbol">∑</span>
-                <p><strong>Bidias TIOTSOP</strong><br>Étudiant en mathématiques appliquées<br>École Polytechnique</p>
+                <p><strong>Bidias TIOTSOP</strong><br>Applied Mathematics Student<br>École Polytechnique</p>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="projects.html">Projets</a></li>
-                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="cv.html">Resume</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Liens</h4>
+                    <h4>Links</h4>
                     <ul>
                         <li><a href="https://github.com/Cabr3l" target="_blank">GitHub</a></li>
                         <li><a href="https://linkedin.com/in/Bidias-TIOTSOP" target="_blank">LinkedIn</a></li>
@@ -289,11 +279,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 — Portfolio. Tous droits réservés.</p>
+            <p>&copy; 2026 — Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="main.js"></script>
 </body>
 </html>
-

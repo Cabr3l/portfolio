@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +19,28 @@
                 <span class="logo-text">Portfolio</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="projects.html">Projets</a></li>
-                <li><a href="about.html">À propos</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="cv.html">Resume</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
             <button class="mobile-menu-btn" aria-label="Menu">
                 <span></span>
                 <span></span>
@@ -35,19 +52,19 @@
     <main>
         <section class="page-header">
             <div class="page-header-content">
-                <span class="section-tag">Échangeons</span>
+                <span class="section-tag">Let's Connect</span>
                 <h1>Contact</h1>
-                <p>N'hésitez pas à me contacter pour toute question ou opportunité.</p>
+                <p>Feel free to reach out for any questions or opportunities.</p>
             </div>
         </section>
 
         <section class="contact-section">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Restons en contact</h2>
+                    <h2>Get in Touch</h2>
                     <p>
-                        Je suis toujours ouvert aux discussions, que ce soit pour des projets, 
-                        des opportunités de stage ou simplement pour échanger sur des sujets techniques.
+                        I am always open to discussions, whether for projects, 
+                        internship opportunities, or simply to exchange on technical topics.
                     </p>
                     
                     <div class="contact-methods">
@@ -71,7 +88,7 @@
                                 </svg>
                             </div>
                             <div class="contact-details">
-                                <h3>Téléphone</h3>
+                                <h3>Phone</h3>
                                 <a href="tel:+33744866598">+33 7 44 86 65 98</a>
                             </div>
                         </div>
@@ -110,7 +127,7 @@
                                 </svg>
                             </div>
                             <div class="contact-details">
-                                <h3>Localisation</h3>
+                                <h3>Location</h3>
                                 <span>Palaiseau, France</span>
                             </div>
                         </div>
@@ -119,30 +136,30 @@
 
                 <div class="contact-form-wrapper">
                     <form class="contact-form" id="contact-form">
-                        <h2>Envoyez-moi un message</h2>
+                        <h2>Send me a message</h2>
                         
                         <div class="form-group">
-                            <label for="name">Nom complet</label>
-                            <input type="text" id="name" name="name" required placeholder="Votre nom">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
                         </div>
                         
                         <div class="form-group">
-                            <label for="subject">Sujet</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Sujet de votre message">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Subject of your message">
                         </div>
                         
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
+                            <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
                         </div>
                         
                         <button type="submit" class="btn btn-primary btn-full">
-                            <span>Envoyer le message</span>
+                            <span>Send Message</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="22" y1="2" x2="11" y2="13"/>
                                 <polygon points="22 2 15 22 11 13 2 9 22 2"/>
@@ -150,8 +167,8 @@
                         </button>
 
                         <p class="form-note">
-                            <small>Note : Ce formulaire est une maquette. Pour un site GitHub Pages statique, 
-                            vous pouvez utiliser des services comme Formspree ou Netlify Forms.</small>
+                            <small>Note: This form is a mockup. For a static GitHub Pages site, 
+                            you can use services like Formspree or Netlify Forms.</small>
                         </p>
                     </form>
                 </div>
@@ -162,22 +179,19 @@
             <div class="availability-card">
                 <div class="availability-status">
                     <span class="status-dot"></span>
-                    <span>Disponible pour des opportunités</span>
+                    <span>Open to opportunities</span>
                 </div>
-                <h2>Recherche de stage en Finance Quantitative</h2>
+                <h2>Let's Connect!</h2>
                 <p>
-                    Je suis actuellement à la recherche d'un stage de recherche dans les domaines 
-                    de la <strong>finance quantitative</strong> et du développement de modèles.
+                    Feel free to reach out to discuss projects, 
+                    collaborations, or simply to exchange on technical topics.
                 </p>
                 <div class="availability-details">
                     <div class="detail-item">
-                        <strong>Durée :</strong> 4-6 mois
+                        <strong>Fields:</strong> Quantitative Finance, ML, Data Science
                     </div>
                     <div class="detail-item">
-                        <strong>Domaines :</strong> Quant Research, Model Development
-                    </div>
-                    <div class="detail-item">
-                        <strong>Mobilité :</strong> France / International
+                        <strong>Mobility:</strong> France / International
                     </div>
                 </div>
             </div>
@@ -188,20 +202,21 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <span class="logo-symbol">∑</span>
-                <p><strong>Bidias TIOTSOP</strong><br>Étudiant en mathématiques appliquées<br>École Polytechnique</p>
+                <p><strong>Bidias TIOTSOP</strong><br>Applied Mathematics Student<br>École Polytechnique</p>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="projects.html">Projets</a></li>
-                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="cv.html">Resume</a></li>
+                        <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Liens</h4>
+                    <h4>Links</h4>
                     <ul>
                         <li><a href="https://github.com/Cabr3l" target="_blank">GitHub</a></li>
                         <li><a href="https://linkedin.com/in/Bidias-TIOTSOP" target="_blank">LinkedIn</a></li>
@@ -210,11 +225,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 — Portfolio. Tous droits réservés.</p>
+            <p>&copy; 2026 — Portfolio. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="main.js"></script>
 </body>
 </html>
-
