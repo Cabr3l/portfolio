@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Series Prediction | Bidias TIOTSOP</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Code+Pro:wght@400;500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-background"></div>
+    
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-symbol">∑</span>
+                <span class="logo-text">Portfolio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../cv.html">Resume</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="project-detail">
+        <section class="project-hero">
+            <a href="../projects.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Projects
+            </a>
+            <div class="project-hero-content">
+                <div class="project-meta-detail">
+                    <span class="project-category-tag">Deep Learning</span>
+                    <span class="project-date-tag">2025</span>
+                </div>
+                <h1>Time Series Prediction</h1>
+                <p class="project-tagline">Deep learning approaches for astronomical time series classification and prediction</p>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="project-main">
+                <div class="content-section">
+                    <h2>Project Overview</h2>
+                    <p>This project explores advanced machine learning techniques for time series analysis, with a focus on astronomical data. The primary dataset consisted of photometric measurements from exoplanet WASP-126 b, presenting unique challenges due to noise, irregular sampling, and transit detection requirements.</p>
+                    <p>The project compared traditional methods (Dynamic Time Warping with k-NN) against modern deep learning architectures (LSTM and Transformers) for both classification and prediction tasks.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Technical Approach</h2>
+                    <ul class="method-list">
+                        <li><strong>Dynamic Time Warping (DTW):</strong> Implemented DTW distance metric for time series classification, handling temporal distortions and phase shifts in the data.</li>
+                        <li><strong>LSTM Networks:</strong> Developed recurrent neural network models to capture long-term dependencies in the photometric sequences.</li>
+                        <li><strong>Transformer Architecture:</strong> Implemented attention-based models for superior sequence modeling, achieving the best prediction performance.</li>
+                       </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Key Results</h2>
+                    <div class="results-grid">
+                        <div class="result-card highlight">
+                            <span class="result-number"></span>
+                            <h4>RMSE Improvement</h4>
+                            <p>Transformer models achieved 92% better precision than baseline methods</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-icon">🔮</span>
+                            <h4>Multi-step Forecasting</h4>
+                            <p>Accurate predictions up to 24 time steps ahead</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-icon">🎯</span>
+                            <h4>Transit Detection</h4>
+                            <p>High accuracy in identifying exoplanet transit events</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Model Comparison</h2>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>RMSE</th>
+                                    <th>Parameters</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DTW + k-NN</td>
+                                    <td>0.142</td>
+                                    <td>Non-parametric</td>
+                                </tr>
+                                <tr>
+                                    <td>LSTM</td>
+                                    <td>0.067</td>
+                                    <td>125K</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>Transformer</td>
+                                    <td>0.011</td>
+                                    <td>310K</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Technologies Used</h2>
+                    <div class="tech-stack">
+                        <span class="tech-badge">PyTorch</span>
+                        <span class="tech-badge">LSTM</span>
+                        <span class="tech-badge">Transformer</span>
+                        <span class="tech-badge">DTW</span>
+                        <span class="tech-badge">NumPy</span>
+                        <span class="tech-badge">Matplotlib</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="project-sidebar">
+                <div class="sidebar-card">
+                    <h3>Project Info</h3>
+                    <ul class="info-list">
+                        <li>
+                            <span class="info-label">Duration</span>
+                            <span class="info-value">4 months</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Context</span>
+                            <span class="info-value">École Polytechnique</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Type</span>
+                            <span class="info-value">Deep Learning Project</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>Resources</h3>
+                    <div class="sidebar-links">
+                        <a href="https://github.com/Cabr3l/Exoplanet-detection" class="sidebar-link" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                            </svg>
+                            View Source Code
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-symbol">∑</span>
+                <p><strong>Bidias TIOTSOP</strong><br>Applied Mathematics Student<br>École Polytechnique</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../projects.html">Projects</a></li>
+                        <li><a href="../cv.html">Resume</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/Cabr3l" target="_blank">GitHub</a></li>
+                        <li><a href="https://linkedin.com/in/Bidias-TIOTSOP" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 — Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+</html>
+
