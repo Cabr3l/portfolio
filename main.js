@@ -95,7 +95,7 @@ function initProjectFilters() {
 }
 
 /**
- * Contact Form
+ * Contact Form - Opens email client with mailto
  */
 function initContactForm() {
     const form = document.getElementById('contact-form');
@@ -104,15 +104,29 @@ function initContactForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        console.log('Form data:', data);
+        const name = form.querySelector('#name').value;
+        const email = form.querySelector('#email').value;
+        const subject = form.querySelector('#subject').value;
+        const message = form.querySelector('#message').value;
         
+        // Build the mailto link
+        const recipient = 'bidias.tiotsop-ngueguim@polytechnique.edu';
+        const mailSubject = encodeURIComponent(subject);
+        const mailBody = encodeURIComponent(
+            `Hello,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`
+        );
+        
+        const mailtoLink = `mailto:${recipient}?subject=${mailSubject}&body=${mailBody}`;
+        
+        // Open the email client
+        window.location.href = mailtoLink;
+        
+        // Show confirmation
         const btn = form.querySelector('button[type="submit"]');
         const originalText = btn.innerHTML;
         
         btn.innerHTML = `
-            <span>Message sent!</span>
+            <span>Opening email client...</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="20 6 9 17 4 12"/>
             </svg>
@@ -124,8 +138,7 @@ function initContactForm() {
             btn.innerHTML = originalText;
             btn.disabled = false;
             btn.style.background = '';
-            form.reset();
-        }, 3000);
+        }, 2000);
     });
 }
 
