@@ -679,6 +679,30 @@ section { padding: var(--spacing-4xl) var(--spacing-xl); }
     margin-bottom: var(--spacing-md);
 }
 
+.project-figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.project-figure img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    display: block;
+}
+
+.project-figure figcaption {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-left: 3px solid var(--accent-primary);
+    background: var(--bg-card);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
 .method-list {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Climate Time Series | Bidias TIOTSOP</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Code+Pro:wght@400;500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-background"></div>
+    
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-symbol">∑</span>
+                <span class="logo-text">Portfolio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../projects.html" class="active">Projects</a></li>
+                <li><a href="../cv.html">Resume</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="project-detail">
+        <section class="project-hero">
+            <a href="../projects.html" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Projects
+            </a>
+            <div class="project-hero-content">
+                <div class="project-meta-detail">
+                    <span class="project-category-tag">Machine Learning</span>
+                    <span class="project-date-tag">2025</span>
+                </div>
+                <h1>Daily Climate Time Series — Delhi Temperature Forecasting</h1>
+                <p class="project-tagline">Comparative study of Gaussian Processes and XGBoost for daily mean temperature prediction using meteorological covariates</p>
+            </div>
+        </section>
+
+        <section class="project-content">
+            <div class="project-main">
+
+                <div class="content-section">
+                    <h2>Project Overview</h2>
+                    <p>This project focuses on forecasting the daily mean temperature in Delhi using four years of historical climate records (2013–2017). The dataset provides daily measurements of mean temperature, humidity, wind speed, and atmospheric pressure.</p>
+                    <p>The goal was to design and compare several regression pipelines capable of capturing the strong seasonal structure of the data while leveraging meteorological covariates to improve residual accuracy. The primary evaluation metric is <strong>Root Mean Squared Error (RMSE)</strong> on a held-out test set.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Dataset</h2>
+                    <p>The <em>Daily Delhi Climate</em> dataset contains daily observations collected from 2013 to 2017. The target variable is <code>meantemp</code> (°C), and the available features are:</p>
+                    <ul class="method-list">
+                        <li><strong>humidity</strong> — daily mean relative humidity (%)</li>
+                        <li><strong>wind_speed</strong> — daily mean wind speed (km/h)</li>
+                        <li><strong>meanpressure</strong> — daily mean atmospheric pressure (hPa)</li>
+                        <li><strong>date</strong> — converted to a numeric day index to encode temporal structure</li>
+                    </ul>
+                    <p>The dataset contains <strong>no missing values</strong>. However, <code>meanpressure</code> exhibits extreme outliers (values reaching 7 679 hPa against a typical range around 1 011–1 014 hPa). These were handled by clipping at empirical 1% and 99% quantiles.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Technical Approach</h2>
+
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">1. Preprocessing & Feature Engineering</h3>
+                    <ul class="method-list">
+                        <li><strong>Outlier clipping</strong> on <code>meanpressure</code> using quantile thresholds, which significantly improved its correlation with the target.</li>
+                        <li><strong>Standard scaling</strong> of continuous features before model training.</li>
+                        <li><strong>Fourier features</strong> — sine and cosine terms at multiple periods (up to 2 years) to explicitly encode seasonality.</li>
+                    </ul>
+
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">2. Gaussian Process Regression (GPR)</h3>
+                    <p>The first family of models leverages Gaussian Processes with carefully engineered kernels:</p>
+                    <ul class="method-list">
+                        <li><strong>Additive decomposition</strong> \( T(t,w,p,h) = f(t) + g(w,p,h) \): a temporal GP captures seasonal trends, and a second GP models residuals using the meteorological covariates.</li>
+                        <li>The temporal component uses an <strong>ExpSineSquared</strong> kernel (periodicity fixed to 365 days) combined with a <strong>RationalQuadratic</strong> kernel for medium-range irregularities, plus a <strong>WhiteKernel</strong> for noise.</li>
+                        <li>GPR provides not only point predictions but also <strong>calibrated 95% confidence intervals</strong>, giving a direct measure of predictive uncertainty.</li>
+                    </ul>
+
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">3. Fourier Regression + XGBoost</h3>
+                    <p>The second family combines a linear Fourier regression with gradient boosting:</p>
+                    <ul class="method-list">
+                        <li>A <strong>linear regression on Fourier features</strong> captures the main seasonal trend.</li>
+                        <li>An <strong>XGBoost</strong> model with hyperparameter tuning via <code>RandomizedSearchCV</code> and time-series cross-validation (<code>TimeSeriesSplit</code>, 5 folds) fits the residuals.</li>
+                        <li>Hyperparameters searched: number of estimators, learning rate, max depth, min child weight, subsample ratio.</li>
+                    </ul>
+
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">4. Fourier Regression + Gaussian Process on Residuals</h3>
+                    <p>A hybrid variant replaces XGBoost with a GP on the residuals of the Fourier regression, using an RBF kernel combination. This approach achieves the best RMSE but suffers from a high normalised prediction error, indicating the uncertainty estimates are poorly calibrated.</p>
+                </div>
+
+                <figure class="project-figure">
+                    <img src="../img/best_gp.png" alt="Fourier + GP on residuals — test set predictions with 95% confidence interval" loading="lazy">
+                    <figcaption>
+                        <strong>Best model — Fourier Regression + GP on residuals (RMSE 2.65 °C).</strong>
+                        Test set predictions (blue) and 95% confidence interval (shaded) against the true temperature series (green).
+                    </figcaption>
+                </figure>
+
+                <div class="content-section">
+                    <h2>Key Results</h2>
+                    <div class="results-grid">
+                        <div class="result-card highlight">
+                            <span class="result-number">2.65</span>
+                            <h4>Best RMSE (°C)</h4>
+                            <p>Fourier Regression + GP on residuals — best point accuracy</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number">2.67</span>
+                            <h4>XGBoost Only RMSE (°C)</h4>
+                            <p>Full XGBoost on Fourier-augmented features — best scalable approach</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number">2.83</span>
+                            <h4>Pure GPR RMSE (°C)</h4>
+                            <p>Additive GP decomposition with calibrated confidence intervals</p>
+                        </div>
+                    </div>
+                </div>
+
+                <figure class="project-figure">
+                    <img src="../img/second_best_gp.png" alt="Additive GP decomposition — test set predictions with 95% confidence interval" loading="lazy">
+                    <figcaption>
+                        <strong>Additive GP — temporal component + meteorological covariates (RMSE 2.83 °C).</strong>
+                        This approach produces well-calibrated confidence intervals, providing a direct measure of predictive uncertainty on the test set.
+                    </figcaption>
+                </figure>
+
+                <div class="content-section">
+                    <h2>Model Comparison</h2>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Test RMSE (°C)</th>
+                                    <th>Uncertainty Estimates</th>
+                                    <th>Training Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Additive GP (time + covariates)</td>
+                                    <td>2.83</td>
+                                    <td>Yes — calibrated</td>
+                                    <td>High</td>
+                                </tr>
+                                <tr>
+                                    <td>Fourier + XGBoost (residuals)</td>
+                                    <td>3.51</td>
+                                    <td>No</td>
+                                    <td>Low</td>
+                                </tr>
+                                <tr>
+                                    <td>Fourier + GP (residuals)</td>
+                                    <td>2.65</td>
+                                    <td>Yes — overconfident</td>
+                                    <td>High</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>XGBoost on Fourier features</td>
+                                    <td>2.67</td>
+                                    <td>No</td>
+                                    <td>Low</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <figure class="project-figure">
+                    <img src="../img/xgboost.png" alt="XGBoost on Fourier-augmented features — test set predictions" loading="lazy">
+                    <figcaption>
+                        <strong>XGBoost on Fourier-augmented features (RMSE 2.67 °C).</strong>
+                        Despite being computationally far lighter than Gaussian Process approaches, XGBoost with Fourier encodings nearly matches the best GP model on this dataset.
+                    </figcaption>
+                </figure>
+
+                <div class="content-section">
+                    <h2>Key Takeaways</h2>
+                    <ul class="method-list">
+                        <li><strong>Proper preprocessing matters:</strong> clipping pressure outliers visibly improved its correlation with the target temperature and benefited downstream models.</li>
+                        <li><strong>Fourier features are a powerful baseline</strong> for data with well-defined seasonality: encoding the 365-day period as sine/cosine terms substantially reduces the task for the residual model.</li>
+                        <li><strong>XGBoost vs. Gaussian Processes:</strong> despite initial expectations, XGBoost with Fourier augmentation matches the accuracy of GP-based approaches at a fraction of the computational cost.</li>
+                        <li><strong>Uncertainty quantification:</strong> GPs remain attractive when calibrated confidence intervals are needed. However, residual GP models can be overconfident — the high normalised prediction error signals that the model underestimates its own errors.</li>
+                        <li><strong>Future direction:</strong> a promising extension would be to feed GP predictions or uncertainty estimates as features into XGBoost, combining probabilistic modelling with gradient boosting scalability.</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h2>Technologies Used</h2>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">scikit-learn</span>
+                        <span class="tech-badge">Gaussian Processes</span>
+                        <span class="tech-badge">XGBoost</span>
+                        <span class="tech-badge">Fourier Features</span>
+                        <span class="tech-badge">Pandas</span>
+                        <span class="tech-badge">NumPy</span>
+                        <span class="tech-badge">Matplotlib</span>
+                        <span class="tech-badge">Seaborn</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="project-sidebar">
+                <div class="sidebar-card">
+                    <h3>Project Info</h3>
+                    <ul class="info-list">
+                        <li>
+                            <span class="info-label">Domain</span>
+                            <span class="info-value">Climate / Time Series</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Year</span>
+                            <span class="info-value">2025</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Dataset</span>
+                            <span class="info-value">Daily Delhi Climate</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Target</span>
+                            <span class="info-value">Mean Temperature (°C)</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Metric</span>
+                            <span class="info-value">RMSE</span>
+                        </li>
+                        <li>
+                            <span class="info-label">Best RMSE</span>
+                            <span class="info-value">2.65 °C</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>References</h3>
+                    <div class="sidebar-links">
+                        <a href="https://gaussianprocess.org/gpml/chapters/RW.pdf" class="sidebar-link" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                            GPML — Kernel Engineering (Ch. 5)
+                        </a>
+                        <a href="https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_co2.html" class="sidebar-link" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                            sklearn — GPR CO₂ Example
+                        </a>
+                        <a href="https://github.com/Cabr3l/Daily-Climate-Time-Series" class="sidebar-link" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                            </svg>
+                            View Source Code
+                        </a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-symbol">∑</span>
+                <p><strong>Bidias TIOTSOP</strong><br>Applied Mathematics Student<br>École Polytechnique</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../projects.html">Projects</a></li>
+                        <li><a href="../cv.html">Resume</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/Cabr3l" target="_blank">GitHub</a></li>
+                        <li><a href="https://linkedin.com/in/Bidias-TIOTSOP" target="_blank">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 — Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../main.js"></script>
+</body>
+</html>
