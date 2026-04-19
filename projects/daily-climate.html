@@ -60,10 +60,10 @@
             <div class="project-hero-content">
                 <div class="project-meta-detail">
                     <span class="project-category-tag">Machine Learning</span>
-                    <span class="project-date-tag">2025</span>
+                    <span class="project-date-tag">2026</span>
                 </div>
                 <h1>Daily Climate Time Series — Delhi Temperature Forecasting</h1>
-                <p class="project-tagline">Comparative study of Gaussian Processes and XGBoost for daily mean temperature prediction using meteorological covariates</p>
+                <p class="project-tagline">Gaussian Processes, gradient boosting, and a univariate ARIMA benchmark for Delhi daily mean temperature — with covariates where applicable, and an explicit discussion of what is actually comparable.</p>
             </div>
         </section>
 
@@ -73,7 +73,7 @@
                 <div class="content-section">
                     <h2>Project Overview</h2>
                     <p>This project focuses on forecasting the daily mean temperature in Delhi using four years of historical climate records (2013–2017). The dataset provides daily measurements of mean temperature, humidity, wind speed, and atmospheric pressure.</p>
-                    <p>The goal was to design and compare several regression pipelines capable of capturing the strong seasonal structure of the data while leveraging meteorological covariates to improve residual accuracy. The primary evaluation metric is <strong>Root Mean Squared Error (RMSE)</strong> on a held-out test set.</p>
+                    <p>The goal was to design and compare several regression pipelines capable of capturing the strong seasonal structure of the data while leveraging meteorological covariates to improve residual accuracy. The primary evaluation metric is <strong>Root Mean Squared Error (RMSE)</strong> on a held-out test set. Not every model answers the same forecasting question; the sections below separate the covariate-based models from a rolling one-step ARIMA baseline.</p>
                 </div>
 
                 <div class="content-section">
@@ -101,52 +101,11 @@
                     <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">2. Gaussian Process Regression (GPR)</h3>
                     <p>The first family of models leverages Gaussian Processes with carefully engineered kernels:</p>
                     <ul class="method-list">
-                        <li><strong>Additive decomposition</strong> \( T(t,w,p,h) = f(t) + g(w,p,h) \): a temporal GP captures seasonal trends, and a second GP models residuals using the meteorological covariates.</li>
+                        <li><strong>Additive decomposition</strong> — <em>T</em>(<em>t</em>, <em>w</em>, <em>p</em>, <em>h</em>) = <em>f</em>(<em>t</em>) + <em>g</em>(<em>w</em>, <em>p</em>, <em>h</em>): a temporal GP captures seasonal trends, and a second GP models residuals using the meteorological covariates.</li>
                         <li>The temporal component uses an <strong>ExpSineSquared</strong> kernel (periodicity fixed to 365 days) combined with a <strong>RationalQuadratic</strong> kernel for medium-range irregularities, plus a <strong>WhiteKernel</strong> for noise.</li>
                         <li>GPR provides not only point predictions but also <strong>calibrated 95% confidence intervals</strong>, giving a direct measure of predictive uncertainty.</li>
                     </ul>
-
-                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">3. Fourier Regression + XGBoost</h3>
-                    <p>The second family combines a linear Fourier regression with gradient boosting:</p>
-                    <ul class="method-list">
-                        <li>A <strong>linear regression on Fourier features</strong> captures the main seasonal trend.</li>
-                        <li>An <strong>XGBoost</strong> model with hyperparameter tuning via <code>RandomizedSearchCV</code> and time-series cross-validation (<code>TimeSeriesSplit</code>, 5 folds) fits the residuals.</li>
-                        <li>Hyperparameters searched: number of estimators, learning rate, max depth, min child weight, subsample ratio.</li>
-                    </ul>
-
-                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">4. Fourier Regression + Gaussian Process on Residuals</h3>
-                    <p>A hybrid variant replaces XGBoost with a GP on the residuals of the Fourier regression, using an RBF kernel combination. This approach achieves the best RMSE but suffers from a high normalised prediction error, indicating the uncertainty estimates are poorly calibrated.</p>
-                </div>
-
-                <figure class="project-figure">
-                    <img src="../img/best_gp.png" alt="Fourier + GP on residuals — test set predictions with 95% confidence interval" loading="lazy">
-                    <figcaption>
-                        <strong>Best model — Fourier Regression + GP on residuals (RMSE 2.65 °C).</strong>
-                        Test set predictions (blue) and 95% confidence interval (shaded) against the true temperature series (green).
-                    </figcaption>
-                </figure>
-
-                <div class="content-section">
-                    <h2>Key Results</h2>
-                    <div class="results-grid">
-                        <div class="result-card highlight">
-                            <span class="result-number">2.65</span>
-                            <h4>Best RMSE (°C)</h4>
-                            <p>Fourier Regression + GP on residuals — best point accuracy</p>
-                        </div>
-                        <div class="result-card">
-                            <span class="result-number">2.67</span>
-                            <h4>XGBoost Only RMSE (°C)</h4>
-                            <p>Full XGBoost on Fourier-augmented features — best scalable approach</p>
-                        </div>
-                        <div class="result-card">
-                            <span class="result-number">2.83</span>
-                            <h4>Pure GPR RMSE (°C)</h4>
-                            <p>Additive GP decomposition with calibrated confidence intervals</p>
-                        </div>
-                    </div>
-                </div>
-
+                    
                 <figure class="project-figure">
                     <img src="../img/second_best_gp.png" alt="Additive GP decomposition — test set predictions with 95% confidence interval" loading="lazy">
                     <figcaption>
@@ -154,6 +113,77 @@
                         This approach produces well-calibrated confidence intervals, providing a direct measure of predictive uncertainty on the test set.
                     </figcaption>
                 </figure>
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">3. Fourier Regression + XGBoost</h3>
+                    <p>The second family combines a linear Fourier regression with gradient boosting:</p>
+                    <ul class="method-list">
+                        <li>A <strong>linear regression on Fourier features</strong> captures the main seasonal trend.</li>
+                        <li>An <strong>XGBoost</strong> model with hyperparameter tuning via <code>RandomizedSearchCV</code> and time-series cross-validation (<code>TimeSeriesSplit</code>, 5 folds) fits the residuals.</li>
+                        <li>Hyperparameters searched: number of estimators, learning rate, max depth, min child weight, subsample ratio.</li>
+                    </ul>
+                    
+                <figure class="project-figure">
+                    <img src="../img/xgboost.png" alt="XGBoost on Fourier-augmented features — test set predictions" loading="lazy">
+                    <figcaption>
+                        <strong>XGBoost on Fourier-augmented features (RMSE 2.67 °C).</strong>
+                        Much faster to train than full GPR pipelines; on this benchmark it improves on the additive GP above (2.83 °C) and sits between that model and the Fourier + GP hybrid in the next subsection.
+                    </figcaption>
+                </figure>
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">4. Fourier Regression + Gaussian Process on Residuals</h3>
+                    <p>A hybrid variant replaces XGBoost with a GP on the residuals of the Fourier regression, using an RBF kernel combination. Among the covariate-based pipelines, it achieves the lowest RMSE, but it exhibits a high normalised prediction error: the uncertainty estimates are poorly calibrated.</p>
+
+                <figure class="project-figure">
+                    <img src="../img/best_gp.png" alt="Fourier + GP on residuals — test set predictions with 95% confidence interval" loading="lazy">
+                    <figcaption>
+                        <strong>Fourier regression + GP on residuals (RMSE 2.65 °C).</strong>
+                        Test set predictions (blue) and 95% confidence interval (shaded) against the true temperature series (green). This is the strongest long-horizon model that uses the same covariate setup as the other regression approaches above.
+                    </figcaption>
+                </figure>
+
+                    <h3 style="margin-top:1.5rem; margin-bottom:0.75rem; font-size:1.1rem; color: var(--accent);">5. ARIMA on the temperature series alone</h3>
+                    <p>A classical univariate benchmark: ARIMA is fitted only on the temperature series (no humidity, wind, or pressure).</p>
+                    <ul class="method-list">
+                        <li><strong>Preprocessing</strong> — deseasonalization and detrending before order selection.</li>
+                        <li><strong>Order selection</strong> — ACF and PACF guidance, with AIC for the final choice of orders.</li>
+                        <li><strong>Forecasting protocol</strong> — rolling one-step-ahead forecasts on the test segment (each new prediction can use the observed history up to that date).</li>
+                    </ul>
+
+                <figure class="project-figure">
+                    <img src="../img/arima.png" alt="ARIMA on the temperature series — rolling one-step-ahead forecasts" loading="lazy">
+                    <figcaption>
+                        <strong>ARIMA on temperature only (RMSE 1.65 °C, rolling one-step-ahead).</strong>
+                        Univariate series; deseasonalized and detrended; orders chosen with ACF, PACF, and AIC. The reported RMSE refers to successive one-day-ahead predictions, not the same long-horizon mapping as the long-horizon models.
+                    </figcaption>
+                </figure>
+
+                </div>
+
+                <div class="content-section">
+                    <h2>Key Results</h2>
+                    <p>RMSE values are summarised here for a quick overview; the section <em>What is actually comparable?</em> explains how to interpret the ARIMA figure next to the long-horizon models.</p>
+                    <div class="results-grid">
+                        <div class="result-card highlight">
+                            <span class="result-number">2.65</span>
+                            <h4>Best covariate model</h4>
+                            <p>Fourier regression + GP on residuals — lowest error among long-horizon models using meteorological covariates</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number">2.67</span>
+                            <h4>Fourier + XGBoost</h4>
+                            <p>Residual boosting after Fourier trend — fast and nearly as accurate as the Fourier + GP hybrid</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number">1.65</span>
+                            <h4>Lowest headline RMSE</h4>
+                            <p>ARIMA on temperature only — rolling one-step-ahead; not the same task as the long-horizon models (see below)</p>
+                        </div>
+                        <div class="result-card">
+                            <span class="result-number">2.83</span>
+                            <h4>Additive GPR</h4>
+                            <p>Time + covariates in one GP structure — best calibrated uncertainty among GPs</p>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="content-section">
                     <h2>Model Comparison</h2>
@@ -174,36 +204,36 @@
                                     <td>Yes — calibrated</td>
                                     <td>High</td>
                                 </tr>
-                                <tr>
-                                    <td>Fourier + XGBoost (residuals)</td>
-                                    <td>3.51</td>
-                                    <td>No</td>
-                                    <td>Low</td>
-                                </tr>
-                                <tr>
+                                <tr class="highlight-row">
                                     <td>Fourier + GP (residuals)</td>
                                     <td>2.65</td>
                                     <td>Yes — overconfident</td>
                                     <td>High</td>
                                 </tr>
-                                <tr class="highlight-row">
+                                <tr>
                                     <td>XGBoost on Fourier features</td>
                                     <td>2.67</td>
                                     <td>No</td>
                                     <td>Low</td>
+                                </tr>
+                                <tr>
+                                    <td>ARIMA (temperature only, rolling 1-step)</td>
+                                    <td>1.65</td>
+                                    <td>Yes (forecast intervals)</td>
+                                    <td>Low (~40 s)</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <figure class="project-figure">
-                    <img src="../img/xgboost.png" alt="XGBoost on Fourier-augmented features — test set predictions" loading="lazy">
-                    <figcaption>
-                        <strong>XGBoost on Fourier-augmented features (RMSE 2.67 °C).</strong>
-                        Despite being computationally far lighter than Gaussian Process approaches, XGBoost with Fourier encodings nearly matches the best GP model on this dataset.
-                    </figcaption>
-                </figure>
+
+                <div class="content-section">
+                    <h2>What is actually comparable?</h2>
+                    <p>Placing every RMSE in the same table is convenient, but it can be misleading. The covariate-based models (Fourier + XGBoost, Fourier + GP, additive GPR) map a given day&rsquo;s inputs to a prediction for that same day on the test set — a fixed long-horizon regression task with exogenous meteorological features. The ARIMA benchmark is different: it forecasts the next day&rsquo;s temperature from the univariate series alone, in a <strong>rolling one-step-ahead</strong> setup. At each test date, the model has access to the entire observed history up to the previous day, so it refits or updates its state with information that arrives <em>successively</em> along the horizon. That extra temporal leverage partly explains the lower RMSE; it does not mean ARIMA &ldquo;solves the same problem&rdquo; more accurately than Fourier + GP.</p>
+                    <p>It would be somewhat dishonest to crown a single &ldquo;winner&rdquo; without stating this. For a fair comparison of approaches that use humidity, wind, and pressure as inputs, the <strong>strongest long-horizon model remains Fourier regression + Gaussian Process on the residuals</strong> (RMSE 2.65 °C). The ARIMA result is best read as a complementary baseline — valuable, but not interchangeable with the covariate pipelines above.</p>
+                </div>
+
 
                 <div class="content-section">
                     <h2>Key Takeaways</h2>
@@ -212,7 +242,8 @@
                         <li><strong>Fourier features are a powerful baseline</strong> for data with well-defined seasonality: encoding the 365-day period as sine/cosine terms substantially reduces the task for the residual model.</li>
                         <li><strong>XGBoost vs. Gaussian Processes:</strong> despite initial expectations, XGBoost with Fourier augmentation matches the accuracy of GP-based approaches at a fraction of the computational cost.</li>
                         <li><strong>Uncertainty quantification:</strong> GPs remain attractive when calibrated confidence intervals are needed. However, residual GP models can be overconfident — the high normalised prediction error signals that the model underestimates its own errors.</li>
-                        <li><strong>Future direction:</strong> a promising extension would be to feed GP predictions or uncertainty estimates as features into XGBoost, combining probabilistic modelling with gradient boosting scalability.</li>
+                        <li><strong>ARIMA as a baseline:</strong> the univariate ARIMA run achieves a very low rolling one-step RMSE because it uses the temperature history sequentially; it is not a drop-in substitute for the long-horizon models (see <em>What is actually comparable?</em> above).</li>
+                        <li><strong>Future work:</strong> incorporate exogenous variables into a time-series formulation (e.g. ARIMAX), explore longer horizons, and compare against recurrent models such as LSTM for multi-step forecasts.</li>
                     </ul>
                 </div>
 
@@ -223,6 +254,7 @@
                         <span class="tech-badge">scikit-learn</span>
                         <span class="tech-badge">Gaussian Processes</span>
                         <span class="tech-badge">XGBoost</span>
+                        <span class="tech-badge">ARIMA</span>
                         <span class="tech-badge">Fourier Features</span>
                         <span class="tech-badge">Pandas</span>
                         <span class="tech-badge">NumPy</span>
@@ -242,7 +274,7 @@
                         </li>
                         <li>
                             <span class="info-label">Year</span>
-                            <span class="info-value">2025</span>
+                            <span class="info-value">2026</span>
                         </li>
                         <li>
                             <span class="info-label">Dataset</span>
@@ -257,8 +289,12 @@
                             <span class="info-value">RMSE</span>
                         </li>
                         <li>
-                            <span class="info-label">Best RMSE</span>
+                            <span class="info-label">Best RMSE (long-horizon)</span>
                             <span class="info-value">2.65 °C</span>
+                        </li>
+                        <li>
+                            <span class="info-label">ARIMA (rolling 1-step)</span>
+                            <span class="info-value">1.65 °C</span>
                         </li>
                     </ul>
                 </div>
